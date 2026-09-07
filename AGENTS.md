@@ -1,6 +1,7 @@
 # AGENTS.md — React Vite Boilerplate
 
-Guia curto para agentes de IA (Cursor, Copilot, etc.) neste repositório.
+Contrato para qualquer agente de código (Cursor, Copilot, Claude Code, Kiro, etc.).
+Este arquivo é a **fonte da verdade** do contrato AI-assisted do repositório — independente do harness.
 
 ## Stack
 
@@ -19,7 +20,7 @@ Dependências sempre para dentro:
 - Hooks orquestram estado/UI e chamam services.
 - Services acessam API/storage; **não** importam UI.
 
-## Comandos (README)
+## Comandos
 
 | Comando | Uso |
 | --- | --- |
@@ -50,3 +51,7 @@ Dependências sempre para dentro:
 1. **Nova feature:** "Gere a feature `X` com Plop (`npm run plop -- feature`), respeitando UI→hooks→services e testes Vitest."
 2. **Componente compartilhado:** "Crie o componente `Y` em `src/components/` (ou via Plop), tipado, acessível e com teste."
 3. **Refator Dependency Rule:** "Refatore `Z` para que o component use só hooks e o hook chame o service — sem imports UI↔service."
+
+## Adapters (opcional)
+
+Harnesses podem ter adapters finos que apontam para este arquivo (ex.: `.cursor/rules/`, `.github/copilot-instructions.md`). Em caso de conflito, **prevalece `AGENTS.md`**.

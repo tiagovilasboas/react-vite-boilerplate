@@ -1,27 +1,16 @@
 ---
-description: Enforce layered architecture and Dependency Rule for this Vite React boilerplate
+description: Cursor adapter - follow AGENTS.md (Dependency Rule)
 globs: src/**/*
 ---
 
-# Architecture — Dependency Rule
+# Architecture (adapter)
 
-This project uses feature-based layers under `src/`:
+**Primary source:** [`AGENTS.md`](../../AGENTS.md). Follow it for any coding agent.
 
-- `src/features/<feature>/components/` — UI only
-- `src/features/<feature>/hooks/` — UI state / orchestration
-- `src/features/<feature>/services/` — data access (API, storage)
-- Shared: `src/components/`, `src/hooks/`, `src/lib/`, `src/stores/`, `src/app/`
+Essentials for `src/**/*`:
 
-## Dependency Rule (must follow)
-
-```
-components (UI) → hooks → services
-```
-
-- **components** must NOT import from `services/` (or call fetch/axios directly).
-- **hooks** may import `services/`; must NOT import pages/routes as business deps.
-- **services** must NOT import components, hooks, or UI libraries for rendering.
-
-Imports use the `@/` alias (maps to `src/`). Prefer Plop generators for new features/components.
-
-When editing files matching `src/**/*`, preserve this direction of dependencies.
+- Direction: `components` -> `hooks` -> `services`
+- Components must not import `services/` or call fetch/axios directly
+- Hooks may call services; services must not import UI
+- Features live under `src/features/<name>/`; prefer Plop for new ones
+- Use `@/` alias for `src/`
