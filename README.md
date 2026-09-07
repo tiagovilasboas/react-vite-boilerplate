@@ -34,6 +34,7 @@ npm run cleanup
 
 - [✨ Features](#-features)
 - [🏛️ Arquitetura](#-arquitetura)
+- [🤖 AI-assisted](#-ai-assisted)
 - [🧩 Geradores de Código (Plop)](#-geradores-de-código-plop)
 - [🔤 Internacionalização](#-internacionalização)
 - [📊 Avaliação](#-avaliação)
@@ -102,6 +103,19 @@ flowchart TD
   Hooks --> Services["Services<br/>(Acesso a Dados)"]
   Services -->|HTTP / Storage| Sources[("APIs / DB / Cache")]
 ```
+
+## 🤖 AI-assisted
+
+Este repositório inclui um pack para agentes de IA:
+
+- **[`AGENTS.md`](AGENTS.md)** — stack, Dependency Rule, comandos, Do/Don't e prompts prontos
+- **[`.cursor/rules/`](.cursor/rules/)** — regras Cursor (`architecture.mdc`, `safe-edits.mdc`) aplicadas em `src/**/*`
+
+### Prompts prontos
+
+1. Gerar feature `X` com Plop, respeitando UI→hooks→services + testes
+2. Criar componente compartilhado `Y` (Plop ou `src/components/`) tipado e testado
+3. Refatorar `Z` para cumprir a Dependency Rule (component→hook→service)
 
 ## 🚀 Começando
 

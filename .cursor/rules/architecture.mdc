@@ -1,0 +1,27 @@
+---
+description: Enforce layered architecture and Dependency Rule for this Vite React boilerplate
+globs: src/**/*
+---
+
+# Architecture — Dependency Rule
+
+This project uses feature-based layers under `src/`:
+
+- `src/features/<feature>/components/` — UI only
+- `src/features/<feature>/hooks/` — UI state / orchestration
+- `src/features/<feature>/services/` — data access (API, storage)
+- Shared: `src/components/`, `src/hooks/`, `src/lib/`, `src/stores/`, `src/app/`
+
+## Dependency Rule (must follow)
+
+```
+components (UI) → hooks → services
+```
+
+- **components** must NOT import from `services/` (or call fetch/axios directly).
+- **hooks** may import `services/`; must NOT import pages/routes as business deps.
+- **services** must NOT import components, hooks, or UI libraries for rendering.
+
+Imports use the `@/` alias (maps to `src/`). Prefer Plop generators for new features/components.
+
+When editing files matching `src/**/*`, preserve this direction of dependencies.

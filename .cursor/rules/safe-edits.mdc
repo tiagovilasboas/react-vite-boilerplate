@@ -1,0 +1,12 @@
+---
+description: Safe editing practices for AI agents in this repository
+globs: src/**/*
+---
+
+# Safe edits
+
+- **No secrets:** never commit `.env`, tokens, API keys, or credentials. Use env examples only.
+- **Prefer generators:** for new features or shared components, use Plop (`npm run plop -- feature|component`) instead of hand-rolling structure.
+- **Don't invent layers:** stay within existing folders (`app`, `components`, `features`, `hooks`, `lib`, `stores`, `types`). Do not invent new top-level architecture folders without explicit request.
+- **Verify before done:** run `npm run test`, `npm run lint`, and/or `npm run type-check` before claiming the task is complete.
+- Respect the Dependency Rule (UI → hooks → services) documented in `architecture.mdc` and `AGENTS.md`.
