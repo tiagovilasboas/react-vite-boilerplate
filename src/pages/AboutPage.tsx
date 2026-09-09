@@ -45,9 +45,9 @@ export function Component() {
           <List.Item>Vite 7 – build ultrarrápido e HMR instantâneo.</List.Item>
           <List.Item>React 19 + TypeScript estrito.</List.Item>
           <List.Item>
-            Mantine 8 – biblioteca de componentes acessível e tematizável.
+            Mantine 8 – componentes acessíveis; CSS oficial da lib (sem Emotion
+            no app).
           </List.Item>
-          <List.Item>Emotion para estilização CSS-in-JS.</List.Item>
           <List.Item
             icon={
               <ThemeIcon color="green" variant="light" radius="xl">
