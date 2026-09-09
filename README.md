@@ -7,7 +7,7 @@ Sucessor ativo do [react-layered-boilerplate](https://github.com/tiagovilasboas/
 ![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=61DAFB&labelColor=20232a)
 ![Vite 7](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Mantine 8](https://img.shields.io/badge/Mantine-8-339AF0?style=for-the-badge)
+![Mantine 9](https://img.shields.io/badge/Mantine-9-339AF0?style=for-the-badge)
 ![Vitest](https://img.shields.io/badge/Vitest-3-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 [![CI](https://img.shields.io/github/actions/workflow/status/tiagovilasboas/react-vite-boilerplate/ci.yml?branch=main&style=for-the-badge)](https://github.com/tiagovilasboas/react-vite-boilerplate/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
@@ -54,7 +54,7 @@ Agentes de código: leia [`AGENTS.md`](AGENTS.md) primeiro.
 
 - **Vite 7** — HMR e build rápidos (porta 5173).
 - **React 19 + TypeScript** — tipagem estrita.
-- **Mantine 8** — UI acessível; estilos oficiais via CSS (`@mantine/core/styles.css`).
+- **Mantine 9** — UI acessível; estilos oficiais via CSS (`@mantine/core/styles.css`).
 - **Vitest + Testing Library** — testes no mesmo toolchain do Vite.
 - **ESLint + Prettier** — qualidade e formatação; a11y e FormatJS em warn.
 - **Husky + lint-staged + Commitlint** — pre-commit (lint, type-check, testes) e Conventional Commits.
