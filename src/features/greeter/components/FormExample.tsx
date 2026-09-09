@@ -1,14 +1,11 @@
 import { Button, Group, Stack, TextInput } from '@mantine/core'
-import { useForm, zodResolver } from '@mantine/form'
+import { schemaResolver, useForm } from '@mantine/form'
 import { useTranslation } from 'react-i18next'
-import { z } from 'zod'
+import { z } from 'zod/v4'
 
 const schema = z.object({
-  name: z.string().nonempty('validation.required'),
-  email: z
-    .string()
-    .email('validation.invalidEmail')
-    .nonempty('validation.required'),
+  name: z.string().min(1, { error: 'validation.required' }),
+  email: z.email({ error: 'validation.invalidEmail' }),
 })
 
 type FormValues = z.infer<typeof schema>
@@ -16,7 +13,7 @@ type FormValues = z.infer<typeof schema>
 export function FormExample() {
   const { t } = useTranslation()
   const form = useForm<FormValues>({
-    validate: zodResolver(schema.transform((vals) => vals)),
+    validate: schemaResolver(schema, { sync: true }),
     initialValues: {
       name: '',
       email: '',
