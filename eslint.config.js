@@ -8,7 +8,16 @@ import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default [
-  { ignores: ['dist/**', '.unlighthouse/**', 'stats.html', 'out.css'] },
+  {
+    ignores: [
+      'dist/**',
+      'coverage/**',
+      '.unlighthouse/**',
+      'stats.html',
+      'out.css',
+      'plopfile.cjs',
+    ],
+  },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.browser } },
   ...tseslint.configs.recommended,

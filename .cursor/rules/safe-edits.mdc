@@ -8,7 +8,7 @@ globs: src/**/*
 **Primary source:** [`AGENTS.md`](../../AGENTS.md).
 
 - No secrets (`.env`, tokens, keys)
-- Do not invent top-level layers beyond existing folders
+- Do not invent top-level layers beyond `app/`, `pages/`, `components/`, `features/`, `hooks/`, `lib/`, `stores/`, `types/`
 - Prefer Plop for new features/components
 - Run `test` / `lint` / `type-check` before claiming done
 - Never break the Dependency Rule in `AGENTS.md`

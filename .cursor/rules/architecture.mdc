@@ -13,4 +13,5 @@ Essentials for `src/**/*`:
 - Components must not import `services/` or call fetch/axios directly
 - Hooks may call services; services must not import UI
 - Features live under `src/features/<name>/`; prefer Plop for new ones
+- Pages live under `src/pages/`; app shell under `src/app/`
 - Use `@/` alias for `src/`
