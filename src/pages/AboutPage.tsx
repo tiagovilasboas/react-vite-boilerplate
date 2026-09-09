@@ -45,7 +45,7 @@ export function Component() {
           <List.Item>Vite 7 – build ultrarrápido e HMR instantâneo.</List.Item>
           <List.Item>React 19 + TypeScript estrito.</List.Item>
           <List.Item>
-            Mantine 8 – componentes acessíveis; CSS oficial da lib (sem Emotion
+            Mantine 9 – componentes acessíveis; CSS oficial da lib (sem Emotion
             no app).
           </List.Item>
           <List.Item
