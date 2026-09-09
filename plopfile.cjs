@@ -1,4 +1,25 @@
+const fs = require('fs')
+const path = require('path')
+
 module.exports = function (plop) {
+  plop.setActionType('removePath', (answers, config) => {
+    const target = path.resolve(process.cwd(), config.path)
+    if (!fs.existsSync(target)) {
+      return `skipped missing ${config.path}`
+    }
+    fs.rmSync(target, { recursive: true, force: true })
+    return `removed ${config.path}`
+  })
+
+  // Cleanup templates are JSX/JSON with `{t('...')}` — Handlebars would parse them.
+  plop.setActionType('copyFile', (answers, config) => {
+    const src = path.resolve(process.cwd(), config.templateFile)
+    const dest = path.resolve(process.cwd(), config.path)
+    fs.mkdirSync(path.dirname(dest), { recursive: true })
+    fs.copyFileSync(src, dest)
+    return `copied ${config.path}`
+  })
+
   plop.setGenerator('component', {
     description: 'Cria um componente React com suporte a tema e i18n',
     prompts: [
@@ -79,11 +100,32 @@ module.exports = function (plop) {
         path: 'src/features/{{camelCase name}}/components/{{pascalCase name}}.module.css',
         templateFile: 'plop-templates/feature/component.module.css.hbs',
       },
+      {
+        type: 'add',
+        path: 'src/locales/pt/{{camelCase name}}.json',
+        template: `{
+  "currentValue": "Valor atual: {{value}}",
+  "increment": "Incrementar",
+  "decrement": "Decrementar",
+  "fetch": "Buscar valor"
+}`,
+      },
+      {
+        type: 'add',
+        path: 'src/locales/en/{{camelCase name}}.json',
+        template: `{
+  "currentValue": "Current value: {{value}}",
+  "increment": "Increment",
+  "decrement": "Decrement",
+  "fetch": "Fetch value"
+}`,
+      },
     ],
   })
 
   plop.setGenerator('cleanup', {
-    description: 'Limpa o boilerplate removendo exemplos e código desnecessário',
+    description:
+      'Limpa o boilerplate removendo exemplos e código desnecessário',
     prompts: [
       {
         type: 'confirm',
@@ -101,40 +143,40 @@ module.exports = function (plop) {
 
       return [
         {
-          type: 'remove',
+          type: 'removePath',
           path: 'src/features',
         },
         {
-          type: 'remove',
+          type: 'removePath',
           path: 'src/pages/AboutPage.tsx',
         },
         {
-          type: 'remove',
-          path: 'src/features/greeter/components/Greeting.tsx',
-        },
-        {
-          type: 'add',
+          type: 'copyFile',
           path: 'src/pages/HomePage.tsx',
           templateFile: 'plop-templates/cleanup/HomePage.tsx.hbs',
-          force: true,
         },
         {
-          type: 'modify',
+          type: 'copyFile',
           path: 'src/app/router.tsx',
           templateFile: 'plop-templates/cleanup/router.tsx.hbs',
         },
         {
-          type: 'modify',
+          type: 'copyFile',
           path: 'src/App.tsx',
           templateFile: 'plop-templates/cleanup/App.tsx.hbs',
         },
         {
-          type: 'modify',
+          type: 'copyFile',
+          path: 'src/App.test.tsx',
+          templateFile: 'plop-templates/cleanup/App.test.tsx.hbs',
+        },
+        {
+          type: 'copyFile',
           path: 'src/locales/en/common.json',
           templateFile: 'plop-templates/cleanup/en.common.json.hbs',
         },
         {
-          type: 'modify',
+          type: 'copyFile',
           path: 'src/locales/pt/common.json',
           templateFile: 'plop-templates/cleanup/pt.common.json.hbs',
         },

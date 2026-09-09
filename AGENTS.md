@@ -5,10 +5,11 @@ Este arquivo é a **fonte da verdade** do contrato AI-assisted do repositório �
 
 ## Stack
 
-- **React 19** + **TypeScript** + **Vite**
+- **React 19** + **TypeScript** + **Vite 7**
 - **Mantine** (UI) · **Vitest** + Testing Library · **i18next**
 - **Plop** (geradores) · alias `@/` → `src/`
-- Features em `src/features/<nome>/` (components, hooks, services, types)
+- Features em `src/features/<nome>/` (components, hooks/store, api/services, types)
+- Rotas/páginas em `src/pages/` e `src/app/`
 
 ## Dependency Rule
 
@@ -16,20 +17,22 @@ Dependências sempre para dentro:
 
 `UI (components)` → `hooks` → `services`
 
-- Components **não** importam services diretamente.
-- Hooks orquestram estado/UI e chamam services.
+- Components **não** importam services/api diretamente.
+- Hooks (incluindo stores Zustand) orquestram estado/UI e chamam services.
 - Services acessam API/storage; **não** importam UI.
+
+O gerador `feature` do Plop usa `store/` + `api/` como implementação dessa regra (o store é o hook).
 
 ## Comandos
 
-| Comando | Uso |
-| --- | --- |
-| `npm run cleanup` | Remove exemplos (irreversível) |
-| `npm run dev` | Dev server (Vite) |
-| `npm run test` | Vitest |
-| `npm run lint` | ESLint |
-| `npm run type-check` | TypeScript |
-| `npm run plop -- feature` | Gera feature completa |
+| Comando                     | Uso                                  |
+| --------------------------- | ------------------------------------ |
+| `npm run cleanup`           | Remove exemplos (irreversível)       |
+| `npm run dev`               | Dev server (Vite, porta 5173)        |
+| `npm run test -- --run`     | Vitest (uma vez, CI)                 |
+| `npm run lint`              | ESLint                               |
+| `npm run type-check`        | TypeScript                           |
+| `npm run plop -- feature`   | Gera feature completa                |
 | `npm run plop -- component` | Gera componente em `src/components/` |
 
 ## Do
@@ -37,13 +40,14 @@ Dependências sempre para dentro:
 - Preferir **Plop** para features/componentes novos.
 - Colocar lógica de feature em `src/features/...`.
 - Usar `@/` em imports; manter i18n via `useTranslation`.
-- Rodar `test` / `lint` / `type-check` antes de concluir.
+- Rodar `test -- --run` / `lint` / `type-check` antes de concluir.
+- Depois de clonar para um produto real, rodar `npm run cleanup` e só então gerar features.
 
 ## Don't
 
-- Não inventar camadas fora de `app/`, `components/`, `features/`, `hooks/`, `lib/`, `stores/`, `types/`.
+- Não inventar camadas fora de `app/`, `pages/`, `components/`, `features/`, `hooks/`, `lib/`, `stores/`, `types/`.
 - Não acoplar UI a fetch/API direto.
-- Não commitar secrets (`.env`, tokens, chaves).
+- Não commitar secrets (`.env`, tokens, chaves). Use `.env.example` como contrato.
 - Não quebrar a Dependency Rule.
 
 ## Prompts prontos

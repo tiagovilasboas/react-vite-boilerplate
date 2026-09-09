@@ -1,25 +1,23 @@
-import { Box, Paper, Text } from '@mantine/core';
-import { useTranslation } from 'react-i18next';
+import { Box, Paper, Text } from '@mantine/core'
+import { useTranslation } from 'react-i18next'
 
-import classes from './{{pascalCase name}}.module.css';
+import classes from './{{pascalCase name}}.module.css'
 
 export type {{pascalCase name}}Props = {
-  // adicione suas props aqui
-};
+  // add your props here
+}
 
-export function {{pascalCase name}}({}: {{pascalCase name}}Props) {
-  const { t } = useTranslation();
+export function {{pascalCase name}}(_props: {{pascalCase name}}Props) {
+  const { t } = useTranslation('{{camelCase name}}')
 
   return (
     <Paper withBorder p="md" className={classes.wrapper}>
       <Box>
-        <Text>
-          {t('{{camelCase name}}.welcome', { ns: '{{camelCase name}}' })}
-        </Text>
+        <Text>{t('welcome')}</Text>
         <Text c="dimmed" size="sm">
-          {t('{{camelCase name}}.description', { ns: '{{camelCase name}}' })}
+          {t('description')}
         </Text>
       </Box>
     </Paper>
-  );
-} 
+  )
+}
