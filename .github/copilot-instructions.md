@@ -17,6 +17,6 @@ React 19 + TypeScript + Vite / Mantine / Vitest / i18next / Plop / `@/` -> `src/
 
 - Do not commit secrets.
 - Do not break the Dependency Rule.
-- Stay within existing top-level folders under src.
+- Stay within existing top-level folders under src (`app`, `pages`, `components`, `features`, `hooks`, `lib`, `stores`, `types`).
 
 Prefer Plop for new features/components. Run test, lint, and type-check before finishing.
