@@ -1,3 +1,4 @@
+import js from '@eslint/js'
 import prettierConfig from 'eslint-config-prettier'
 import formatjs from 'eslint-plugin-formatjs'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
@@ -16,10 +17,12 @@ export default [
       'stats.html',
       'out.css',
       'plopfile.cjs',
+      '.commitlintrc.cjs',
     ],
   },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.browser } },
+  js.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReactConfig,
   prettierConfig,
@@ -37,14 +40,23 @@ export default [
       'jsx-a11y/anchor-is-valid': 'warn',
       'formatjs/no-literal-string-in-jsx': [
         'warn',
-        { ignoreProps: ['aria-label', 'data-testid'], ignoreLinks: true },
+        {
+          props: {
+            exclude: [
+              ['*', '{aria-label,data-testid}'],
+              ['a', 'children'],
+            ],
+          },
+        },
       ],
       'react/react-in-jsx-scope': 'off',
     },
   },
   {
     settings: {
-      react: { version: 'detect' },
+      // Pin version: eslint-plugin-react 7.37 still uses context.getFilename()
+      // for auto-detect, which ESLint 10 removed.
+      react: { version: '19.2' },
     },
   },
 ]
